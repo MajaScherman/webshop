@@ -6,4 +6,6 @@
 		<title>Java and Cookies!</title>
 	</head>
 <body>
-	<h1><font color="red">A fancy header!</font></h1>
+<div id="header">	
+<h2>Welcome to Java&&Cookies!</h2>
+</div>
