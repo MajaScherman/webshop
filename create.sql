@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS users(
 );
 
 CREATE TABLE IF NOT EXISTS orders(
-	username varchar(100) FOREIGN KEY REFERENCES users,
+	username varchar(100) FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE,
 	ordernbr serial NOT NULL,
 	CONSTRAINT order_pk PRIMARY KEY (username, ordernbr)
 );
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS items(
 );
 
 CREATE TABLE IF NOT EXISTS ordereditems(
-	itemnbr serial FOREIGN KEY REFERENCES items,
-	ordernbr serial FOREIGN KEY REFERENCES orders,
+	itemnbr serial FOREIGN KEY (itemnbr) REFERENCES items(index) ON DELETE CASCADE,
+	ordernbr serial FOREIGN KEY (ordernbr) REFERENCES orders(ordernbr) ON DELETE CASCADE,
 	nbr int NOT NULL
 );
