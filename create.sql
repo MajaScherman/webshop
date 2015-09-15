@@ -9,21 +9,23 @@ CREATE TABLE IF NOT EXISTS users(
 
 CREATE TABLE IF NOT EXISTS orders(
 	username varchar(100) NOT NULL,
-	ordernbr serial NOT NULL,
-	CONSTRAINT order_pk PRIMARY KEY (username, ordernbr),
-	CONSTRAINT username_fk FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE,
+	ordernbr int NOT NULL UNIQUE,
+	CONSTRAINT order_pk PRIMARY KEY (ordernbr),
+	FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS items(
+	indexnbr int PRIMARY KEY,
 	itemname varchar(100) NOT NULL,
-	index serial PRIMARY KEY,
 	price int NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS ordereditems(
-	itemnbr serial NOT NULL,
-	ordernbr serial NOT NULL,
+CREATE TABLE IF NOT EXISTS ordered_items(
+	itemnbr int NOT NULL,
+	ordernbr int NOT NULL,
 	nbr int NOT NULL,
-	CONSTRAINT itemnbr_fk FOREIGN KEY (itemnbr) REFERENCES items(index) ON DELETE CASCADE,
-	CONSTRAINT ordernbr_fk FOREIGN KEY (ordernbr) REFERENCES orders(ordernbr) ON DELETE CASCADE,
+	CONSTRAINT ordered_item_pk PRIMARY KEY (itemnbr, ordernbr),
+	CONSTRAINT itemnbr_fk FOREIGN KEY (itemnbr) REFERENCES items(indexnbr) ON DELETE CASCADE,
+	CONSTRAINT ordernbr_fk FOREIGN KEY (ordernbr) REFERENCES orders(ordernbr) ON DELETE CASCADE
+	
 );
