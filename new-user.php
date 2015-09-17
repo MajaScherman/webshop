@@ -2,6 +2,7 @@
 
 require "config.php";
 require "class/db.php";
+require "functions.php";
 
 $db = new Database($config);
 
@@ -12,15 +13,23 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     $givenname = $_POST["givenname"];
     $homeaddress = $_POST["homeaddress"];
     $surname = $_POST["surname"];
-    if ( empty($password) || empty($username) || empty($givenname) || empty($email) || empty($surname) || empty($homeaddress)) {
+    if ( empty($password) || empty($username) || empty($givenname) ||
+         empty($email) || empty($surname) || empty($homeaddress)) {
         $status = "Please fill in every field";
+    } else if ( !validEmail($email)) {
+        $status = "Please enter a valid email. ";
     } else {
         //Register user
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         $result = $db->createUser($username, $email, $hashed_password, $givenname,
-                        $surname, $homeaddress);
-        $status = "Thanks for registering with $username, $password and $homeaddress.";
+                                  $surname, $homeaddress);
+        if ($result)  {
+            // User created successfully.
+            $status = "Thanks for registering with $username and $homeaddress.";
+        } else {
+            $status = "User already exists. ";
+        }
     }
 }
 
