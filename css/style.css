@@ -1,14 +1,36 @@
+body{
+background-color: #fdf5c9;
+text-align: center;
+}
+
 #header{
-background: #6b3e26;
+background-color: #6b3e26;
 padding: 10px;
 text-align: center;
 }
-h1{
-font-family: comic sans;
-color: #c2f2d0;
+
+#content{
+background-color: #ffffff;
+padding: 5px;
+text-align: center;
 }
+
+#left{
+background-color: #ffffff;
+}
+
+#right{
+background-color: #ffffff;
+
+h1{
+font-color: #c2f2d0;
+}
+
 h2{
-font-family: comic sans;
-color: #ffc5d9;
-font-size: 60px;
+font-color: #ffc5d9; //pink
+font-size: 60pn;
+}
+
+h3{
+font-color: #6b3e26; //darkbrown
 }
