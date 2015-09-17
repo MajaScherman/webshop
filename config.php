@@ -6,7 +6,7 @@
  * Use the $config array to get the config settings.
 */
 
-// ONLY FOR DEVELOPMENT / TESTING. DON'T USE IN PRODUCTION
+// ONLY FOR DEVELOPMENT / TESTING. DONT USE IN PRODUCTION
 $config = array(
     "title"    => "Webshop",
     "username" => "root",

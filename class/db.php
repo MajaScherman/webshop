@@ -113,16 +113,20 @@ dbname=javacookie_db", $config["username"], $config["password"]);
        # If user could not be created, false is returned.
        #------------------------------------------------------------------
      */
-    public function createUser($username, $email, $password, $name)
+    public function createUser($username, $email, $password, $givenname,
+                               $surname, $homeaddress)
     {
         $bindings = array(
             "username" => $username,
             "email"    => $email,
             "password" => $password,
-            "name"     => $name
+            "givenname" => $givenname,
+            "surname" => $surname,
+            "homeaddress" => $homeaddress
         );
-        $query_string = "INSERT INTO users (username, email, password, name)
-VALUES(:username, :email, :password, :name)";
+        $query_string = "INSERT INTO users (username, password, email,
+ givenname, surname, homeaddress) VALUES(:username, :password, :email,
+:givenname, :surname, :homeaddress)";
         $result = $this->insertQuery($query_string, $bindings);
         return $result;
     }

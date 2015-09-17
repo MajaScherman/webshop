@@ -1,4 +1,11 @@
-<?php require "inc/header.php"; ?>
+<?php
+
+require "config.php";
+
+
+?>
+
+    <?php require "inc/header.php"; ?>
 
 <h1>Welcome to Java & Cookies!</h1>
 <form>
