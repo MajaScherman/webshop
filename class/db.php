@@ -8,8 +8,8 @@ class Database
     public function __construct($config)
     {
         try {
-            $this->conn = new PDO("mysql:host=localhost;dbname=javacookies_db",
-                                  $config["DB_USERNAME"], $config["DB_PASSWORD"]);
+            $this->conn = new PDO("mysql:host=localhost;
+dbname=javacookie_db", $config["username"], $config["password"]);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         } catch (Exception $e) {

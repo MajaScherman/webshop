@@ -1,7 +1,17 @@
 <?php
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'username');
-define('DB_PASSWORD', 'password');
-define('DB_DATABASE', 'database');
-$db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+/**
+ * Config file for site configuration.
+ *
+ * This file handles the config variables through an array.
+ * Use the $config array to get the config settings.
+*/
+
+// ONLY FOR DEVELOPMENT / TESTING. DON'T USE IN PRODUCTION
+$config = array(
+    "title"    => "Webshop",
+    "username" => "root",
+    "password" => "",
+    "dbname"   => "javacookie_db"     
+);
+
 ?>
