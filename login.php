@@ -1,12 +1,22 @@
 <?php
+require "config.php";
+require "class/db.php";
+require "functions.php";
+
+$db = new Database($config);
+
 if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $username = $_POST["username"];
     if ( empty($password) || empty($username)) {
-        $status = "Missing email or username.";
+        $status = "Missing username or password.";
     } else {
         // log in user
-        $status = "Thanks for logging in with $username and $password.";
+        if ( authenticateUser($username,$password,$db)){
+          $status = "Thanks for logging in with $username and $password.";
+        }else {
+          $status = "Wrong username or password";
+        }
     }
 }
 ?>

@@ -24,7 +24,9 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
 
 Java: <input type="checkbox" name="item1" value="java" /><br />
 
-Cookie: <input type="checkbox" name="item2" value="cookie"/> <br />
+<input type="number" name="amount1" min="1" max="5">Cookie(s): 
+<input type="checkbox" name="item2" value="cookie"/> <br />
+
 <input type="submit" value="Buy" /><br />
 
 <?php if ( isset($status) ) : ?>
