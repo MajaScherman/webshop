@@ -4,12 +4,12 @@ class Database
 {
     private $conn;
     private $status_message;
-    
+
     public function __construct($config)
     {
         try {
-            $this->conn = new PDO("mysql:host=localhost;dbname=practice",
-                                  $config["username"], $config["password"]);
+            $this->conn = new PDO("mysql:host=localhost;dbname=javacookies_db",
+                                  $config["DB_USERNAME"], $config["DB_PASSWORD"]);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         } catch (Exception $e) {
@@ -18,12 +18,12 @@ class Database
         }
     }
 
-    /* 
-       #------------------------------------------------------------------ 
+    /*
+       #------------------------------------------------------------------
        # Returns a table with $tablename.
        # Note that by using query the entered data needs to be escaped
        # to avoid SQL injections.
-       #------------------------------------------------------------------ 
+       #------------------------------------------------------------------
      */
     public function getTable($tablename)
     {
@@ -38,16 +38,16 @@ class Database
         }
     }
 
-    /* 
-       #------------------------------------------------------------------ 
+    /*
+       #------------------------------------------------------------------
        # Runs a prepared statement with specified bindings.
        # Should be used when something should be returned.
        # By using prepared statement there is no need to escape or quote
-       # the parameters. 
+       # the parameters.
        # Returns an associative array.
        # Returns false if there was no data returned.
        # Saves status in status variable.
-       #------------------------------------------------------------------ 
+       #------------------------------------------------------------------
      */
     public function query_db($query, $bindings)
     {
@@ -60,12 +60,12 @@ class Database
         return $results ? $results : false;
     }
 
-    /* 
-       #------------------------------------------------------------------ 
+    /*
+       #------------------------------------------------------------------
        # Runs a prepared statement with specified bindings.
        # Returns true if successfull or false on failure.
        # Saves status in status variable.
-       #------------------------------------------------------------------ 
+       #------------------------------------------------------------------
      */
     public function insertQuery($query, $bindings)
     {
@@ -82,11 +82,11 @@ class Database
         }
     }
 
-    /* 
-       #------------------------------------------------------------------ 
+    /*
+       #------------------------------------------------------------------
        # Returns user with specified email.
        # Returns false if no email was found.
-       #------------------------------------------------------------------ 
+       #------------------------------------------------------------------
      */
     public function getUserByEmail($email)
     {
@@ -95,11 +95,11 @@ class Database
         return $user[0];
     }
 
-    /* 
-       #------------------------------------------------------------------ 
+    /*
+       #------------------------------------------------------------------
        # Returns user with specified username.
        # Returns false if no user with $username was found.
-       #------------------------------------------------------------------ 
+       #------------------------------------------------------------------
      */
     public function getUserByUsername($username)
     {
@@ -107,11 +107,11 @@ class Database
         $user = $this->query_db("SELECT * FROM users WHERE username = :username", $bindings);
         return $user[0];
     }
-    /* 
-       #------------------------------------------------------------------ 
+    /*
+       #------------------------------------------------------------------
        # Creates user with specified information.
        # If user could not be created, false is returned.
-       #------------------------------------------------------------------ 
+       #------------------------------------------------------------------
      */
     public function createUser($username, $email, $password, $name)
     {
@@ -121,16 +121,16 @@ class Database
             "password" => $password,
             "name"     => $name
         );
-        $query_string = "INSERT INTO users (username, email, password, name) 
+        $query_string = "INSERT INTO users (username, email, password, name)
 VALUES(:username, :email, :password, :name)";
         $result = $this->insertQuery($query_string, $bindings);
         return $result;
     }
 
-    /* 
-       #------------------------------------------------------------------ 
+    /*
+       #------------------------------------------------------------------
        # Returns the status message if set, otherwise null.
-       #------------------------------------------------------------------ 
+       #------------------------------------------------------------------
      */
     public function getStatus()
     {
@@ -138,31 +138,31 @@ VALUES(:username, :email, :password, :name)";
             ? $this->status_message
             : null;
     }
-    
+
 }
 
 // --------------- TESTING BELOW: ----------------- //
-/* 
+/*
    $config = array(
    "username" => "root",
    "password" => ""
    );
    $db = new Database($config);
-   /* 
+   /*
    $bind = array(
    "id" => 1
    );
    $user = $db->query("SELECT * FROM users WHERE id = :id", $bind)[0];
    var_dump($user); */
 /* echo $user["username"]; */
-/* 
+/*
    $user = $db->getUserByEmail("bob@example.com");
    if ( $user )
    print_r($user);
    else
    echo "No user with that email."; */
 
-/* 
+/*
 
    $result = $db->createUser("Lina", "lina@example.com", "password123", "Lina B");
 
