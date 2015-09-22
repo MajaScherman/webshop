@@ -3,6 +3,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
   if(empty($_POST)){
     $status = "POST is empty";
   }else {
+    $items = "";
     foreach($_POST as $key => $value)
     {
         if ($value != "0")
