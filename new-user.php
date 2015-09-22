@@ -8,7 +8,7 @@ $db = new Database($config);
 
 if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
-    $username = $_POST["username"];
+    $username = htmlspecialchars($_POST["username"]);
     $email = $_POST["email"];
     $givenname = $_POST["givenname"];
     $homeaddress = $_POST["homeaddress"];

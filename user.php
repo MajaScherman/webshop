@@ -12,7 +12,7 @@ if ( isset($_SESSION["username"]) ) {
     $user = $db->getUserByusername($username);
 } else {
     // No session. Redirect.
-
+    header("Location: login.php");
 }
 
 ?>
@@ -22,9 +22,15 @@ if ( isset($_SESSION["username"]) ) {
 
 
 <h1>User Page</h1>
+<p>Welcome to your user page! Here you can find almost nothing atm...</p>
 
 <?php if ( isset ($username) ) : ?>
-    <h2><?= $username;  ?> </h2>
+    <div class="user-info">
+        <ul>
+            <li><strong>Username: </strong> <?= $username;  ?> </li>
+        </ul>
+    </div>
 <?php endif; ?>
+<a href="logout.php">Logout</a>
 
 <?php require("inc/footer.php") ?>

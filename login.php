@@ -11,6 +11,7 @@ $db = new Database($config);
 if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $username = $_POST["username"];
+    $username = htmlspecialchars($username);
     if ( empty($password) || empty($username)) {
         $status = "Missing username or password.";
     } else {
@@ -27,7 +28,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php require("inc/header.php") ?>
 
-<h1> Login to JAVA and COOKIES awesome wepshop!!!<h1>
+<h1> Login to JAVA and COOKIES awesome webshop!</h1>
 
 <form action="" method="post">
   <label for="username">UserName :</label>
