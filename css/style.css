@@ -4,36 +4,31 @@ body{
 }
 
 #header{
-    background-color: #6b3e26;
+    background: #6b3e26;
     padding: 10px;
     text-align: center;
+    color: #fdf5c9;
+}
+
+h1{
+color: #6b3e26;
+font-size: 3 p;
+}
+
+h2{
+color: #6b3e26;
+font-size: 2 p;
+}
+
+h3{
+color: #6b3e26;
+font-size: 1 p;
 }
 
 #content{
     background-color: #ffffff;
     padding: 5px;
     text-align: center;
-}
-
-#left{
-    background-color: #ffffff;
-}
-
-#right{
-    background-color: #ffffff;
-
-    h1{
-        font-color: #c2f2d0;
-    }
-
-    h2{
-        font-color: #ffc5d9; //pink
-                             font-size: 60pn;
-    }
-
-    h3{
-        font-color: #6b3e26; //darkbrown
-    }
 }
 
 /* Menu specific */

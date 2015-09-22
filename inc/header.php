@@ -6,9 +6,7 @@
 		<title>Java and Cookies!</title>
 	</head>
 <body>
-<div id="header">
-<h2>Welcome to Java&&Cookies!</h2>
-</div>
+<img src = "images/headerimage.jpg"; width=800px>
 
 <nav>
     <ul>
