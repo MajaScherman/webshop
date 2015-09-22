@@ -13,3 +13,5 @@ A webshop meant for that we will attack to practice web security.
 * items.php Shows the items that can be bought in the shop </br>
 * login.php The user fills in username and password </br>
 * new-user.php The user create an acount, with username,password and home address </br>
+
+Link to google doc: https://docs.google.com/a/student.lu.se/document/d/1O-rdShlBjOP3qO6Z3Dhh71Zc8gab6ct_VAjz9UeFsD0/edit?usp=sharing
