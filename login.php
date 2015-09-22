@@ -3,6 +3,9 @@ require "config.php";
 require "class/db.php";
 require "functions.php";
 
+session_start();
+
+
 $db = new Database($config);
 
 if ( $_SERVER["REQUEST_METHOD"] == "POST") {
@@ -13,9 +16,10 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // log in user
         if ( authenticateUser($username,$password,$db)){
-          $status = "Thanks for logging in with $username and $password.";
+            $_SESSION["username"] = $username;
+            header("Location: user.php");
         }else {
-          $status = "Wrong username or password";
+            $status = "Wrong username or password";
         }
     }
 }

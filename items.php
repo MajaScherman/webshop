@@ -1,16 +1,21 @@
 <?php
 if ( $_SERVER["REQUEST_METHOD"] == "POST") {
   if(empty($_POST)){
-    $status = "Check an item to buy.";
+    $status = "POST is empty";
   }else {
-    $status = "The following items has been added to your basket: ";
     foreach($_POST as $key => $value)
     {
-        if (isset($key))
+        if ($value != "0")
         {
-          $status = $status . $value .", ";
+          $items .= "</br>" . $value ." ". $key;
         }
     }
+    if($items != ""){
+      $status = "The following items has been added to your basket:" ." ". $items;
+    }else {
+      $status = "Please select the amount of items you wish to add to your basket.";
+    }
+
   }
 }
 
@@ -22,12 +27,19 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
 <form action="" method="post">
 <p>Please select the items you wish to buy.</p>
 
-Java: <input type="checkbox" name="item1" value="java" /><br />
+Java(s): <select name="Javas">
+    <?php for ($i = 0; $i <= 5; $i++) : ?>
+        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+    <?php endfor; ?>
+</select><br />
+Cookie(s): <select name="Cookies">
+    <?php for ($i = 0; $i <= 5; $i++) : ?>
+        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+    <?php endfor; ?>
+</select><br />
 
-<input type="number" name="amount1" min="1" max="5">Cookie(s): 
-<input type="checkbox" name="item2" value="cookie"/> <br />
 
-<input type="submit" value="Buy" /><br />
+<input type="submit" value="Add to basket" /><br />
 
 <?php if ( isset($status) ) : ?>
 <?= $status ;?>
