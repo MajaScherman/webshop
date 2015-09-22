@@ -25,6 +25,14 @@ color: #6b3e26;
 font-size: 1 p;
 }
 
+p{
+    text-align: center;
+    width: 800px;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
 #content{
     background-color: #ffffff;
     padding: 5px;
