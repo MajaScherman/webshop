@@ -106,7 +106,7 @@ nav ul {
     margin: 4px 0;
 }
 
-
+/* User page */
 .user-info ul {
     list-style: none;
 }
@@ -121,13 +121,6 @@ nav ul {
     width: 70%;
 }
 
-.clear:after {
-    clear: both;
-    content: "";
-    display: table;
-}
-
-
 .username {
     margin-top: 0;
 }
@@ -138,3 +131,9 @@ nav ul {
     padding: 0;
 }
 
+/* Clearfix  */
+.clear:after {
+    clear: both;
+    content: "";
+    display: table;
+}
