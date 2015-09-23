@@ -16,5 +16,11 @@
         <li><a href="items.php">Items</a></li>
         <li><a href="basket.php">Basket</a></li>
     </ul>
+    <?php if( isset($_SESSION["username"] ) ) : ?>
+        <div class="username">
+            <?= "You are logged in as: " . $_SESSION["username"]; ?>
+        </div>
+    <?php endif; ?>
 </nav>
+
 </br>

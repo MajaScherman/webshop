@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <?php require "inc/header.php"; ?>
     <table style="width:100%">
     <tr>

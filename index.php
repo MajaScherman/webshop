@@ -1,11 +1,12 @@
 <?php
+session_start();
 
 require "config.php";
 
 
 ?>
 
-    <?php require "inc/header.php"; ?>
+<?php require "inc/header.php"; ?>
 
 
 <h1>
