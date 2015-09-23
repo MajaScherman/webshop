@@ -1,8 +1,16 @@
 body{
     background-color: #fdf5c9;
-    text-align: center;
 }
 
+.container {
+    width: 800px;
+    margin: 20px auto;
+    border: 1px solid #000;
+    border-radius: 30px;
+    padding: 0 20px 20px;
+    box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 99, 151, 0.1);
+}
 
 #header{
     background: #6b3e26;
@@ -22,6 +30,17 @@ footer {
     left: 0;
 }
 
+.logotype {
+    display: block;
+    margin: 0px auto;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3, h4 {
+    text-align: center;
+}
+
 h1 {
     color: #6b3e26;
     font-size: 3 p;
@@ -37,24 +56,28 @@ h3 {
     font-size: 1 p;
 }
 
-p {
-    text-align: center;
-    width: 800px;
-    margin-right: auto;
-    margin-left: auto;
-
-}
-
-#content{
-    background-color: #ffffff;
-    padding: 5px;
+.center-text {
     text-align: center;
 }
+
+/* p { */
+/*     text-align: center; */
+/*     width: 800px; */
+/*     margin-right: auto; */
+/*     margin-left: auto; */
+
+/* } */
+
+/* #content{ */
+/*     background-color: #ffffff; */
+/*     padding: 5px; */
+/*     text-align: center; */
+/* } */
 
 /* Menu specific */
 
 nav {
-    border:1px solid #ccc;
+    border-bottom:1px solid #ccc;
     border-width:1px 0;
     list-style:none;
     margin:0;
@@ -89,8 +112,21 @@ nav ul {
 }
 
 .user-info {
-    
+    float: left;
+    width: 30%;
 }
+
+.user-content {
+    float: left;
+    width: 70%;
+}
+
+.clear:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
 
 .username {
     margin-top: 0;

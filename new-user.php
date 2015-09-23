@@ -39,6 +39,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
 <?php require("inc/header.php") ?>
 
 <h3>This is where you create a new user.</h3>
+<div class="center-text">
 <p>
   <form action="" method="post">
     <label for="username">Username :</label>
@@ -60,7 +61,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     <?php endif ?>
   </form>
 </p>
-
+</div>
 
 
 <?php require("inc/footer.php");?>

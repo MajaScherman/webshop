@@ -6,8 +6,8 @@
 		<title>Java and Cookies!</title>
 	</head>
     <body>
-        <img src = "images/headerimage.jpg"; width=800px>
-
+        <img class="logotype" src="images/headerimage.jpg"; width=800px>
+        <div class="container">
         <nav>
             <ul>
                 <!-- Två olika menyer beroende på om man är inloggad eller ej.  -->
