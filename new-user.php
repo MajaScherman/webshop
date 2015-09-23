@@ -11,9 +11,9 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $username = htmlspecialchars($_POST["username"]);
     $email = $_POST["email"];
-    $givenname = $_POST["givenname"];
-    $homeaddress = $_POST["homeaddress"];
-    $surname = $_POST["surname"];
+    $givenname = htmlspecialchars($_POST["givenname"]);
+    $homeaddress = htmlspecialchars($_POST["homeaddress"]);
+    $surname = htmlspecialchars($_POST["surname"]);
     if ( empty($password) || empty($username) || empty($givenname) ||
          empty($email) || empty($surname) || empty($homeaddress)) {
         $status = "Please fill in every field";
