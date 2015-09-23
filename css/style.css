@@ -3,6 +3,7 @@ body{
     text-align: center;
 }
 
+
 #header{
     background: #6b3e26;
     padding: 10px;
@@ -10,22 +11,33 @@ body{
     color: #fdf5c9;
 }
 
-h1{
-color: #6b3e26;
-font-size: 3 p;
+footer {
+    background: #6b3e26;
+    height: 50px;
+    text-align: center;
+    color: #fdf5c9;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
-h2{
-color: #6b3e26;
-font-size: 2 p;
+h1 {
+    color: #6b3e26;
+    font-size: 3 p;
 }
 
-h3{
-color: #6b3e26;
-font-size: 1 p;
+h2 {
+    color: #6b3e26;
+    font-size: 2 p;
 }
 
-p{
+h3 {
+    color: #6b3e26;
+    font-size: 1 p;
+}
+
+p {
     text-align: center;
     width: 800px;
     margin-right: auto;
@@ -67,6 +79,11 @@ nav a {
     color: white;
 }
 
+nav ul {
+    margin: 4px 0;
+}
+
+
 .user-info ul {
     list-style: none;
 }
@@ -74,4 +91,14 @@ nav a {
 .user-info {
     
 }
-         
+
+.username {
+    margin-top: 0;
+}
+
+.username a {
+    color: black;
+    font-weight: bold;
+    padding: 0;
+}
+

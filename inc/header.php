@@ -29,7 +29,7 @@
             <!-- Visa användarnamnet under menyn -->
             <?php if( isset($_SESSION["username"] ) ) : ?>
                 <div class="username">
-                    <?= "You are logged in as: " . $_SESSION["username"]; ?>
+                    <?= "You are logged in as: " . "<a href='user.php'>" .  $_SESSION["username"] . "</a>"; ?>
                 </div>
             <?php endif; ?>
         </nav>
