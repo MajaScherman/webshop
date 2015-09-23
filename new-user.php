@@ -29,7 +29,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
             // User created successfully.
             $status = "Thanks for registering with $username and $homeaddress.";
         } else {
-            $status = "User already exists. ";
+            $status = "Username or email already exists. ";
         }
     }
 }
