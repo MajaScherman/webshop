@@ -104,11 +104,13 @@ nav a {
 
 nav ul {
     margin: 4px 0;
+    
 }
 
 /* User page */
 .user-info ul {
     list-style: none;
+    padding-left: 15px;
 }
 
 .user-info {
