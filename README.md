@@ -60,8 +60,8 @@ Set to **Off**.
 ### Restrict directory access
 The default setting is to allow all files to be opened. By specifying a path with [open_basedir](http://php.net/manual/en/ini.core.php#ini.open-basedir) then only those directories can be opened.
 In php.ini:
-'''
+```
     open_basedir = path/to/webserver
-'''
+```
 
 
