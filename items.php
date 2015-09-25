@@ -1,11 +1,8 @@
 <?php
 
 session_start();
-// Creates basket array. Will be recreated everytime the page loads ... ?
+// Creates basket array.
 $basket=array();
- // put the basket in a session variable
-
-
 
 if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     if(empty($_POST)){
@@ -33,18 +30,23 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
         }
         //Creates a new basket with the item names as keys and the amount as values
         $newbasket = array_combine($keys, $values);
+        //Retreives the array with the items which is currently in the basket.
         $oldbasket = $_SESSION['basket'];
-        var_dump($oldbasket);
 
+        //Updates the amount for the items which already have been added to the basket
         foreach ($oldbasket as $key => $value) {
-          $basket[$key] = $oldbasket[$key] + $newbasket[$key];
-          unset($newbasket[$key]);
+          if(array_key_exists($key,$newbasket)){
+            $basket[$key] = $oldbasket[$key] + $newbasket[$key];
+            unset($newbasket[$key]);
+          }
         }
+        //Adds the new items and the amount to the basket
         $basket = $basket+$newbasket;
-        var_dump($basket);
-        $_SESSION['basket']=$basket;
-        //var_dump($_SESSION['basket']);
 
+        //Updates the session variable.
+        $_SESSION['basket']=$basket;
+
+        //Prints out the items and amount added to the basket
       if($items != ""){
           $status = 'The following items has been added to your basket: ' .$items;
         }else {
