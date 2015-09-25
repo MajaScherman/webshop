@@ -1,9 +1,9 @@
 <?php
-
 session_start();
 // Creates basket array.
-$basket=array();
 
+$basket=array();
+//$_SESSION['basket']=$basket;
 if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     if(empty($_POST)){
         $status = "POST is empty";
@@ -12,10 +12,8 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
       //These will later be added to
         $keys = array();
         $values = array();
-
         //Sets the items string which will tell the user which items he/she has added and how many to empty
         $items = "";
-
         //Iterates through all the items
         foreach($_POST as $key => $value)
         {
@@ -32,30 +30,27 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
         $newbasket = array_combine($keys, $values);
         //Retreives the array with the items which is currently in the basket.
         $oldbasket = $_SESSION['basket'];
-
         //Updates the amount for the items which already have been added to the basket
         foreach ($oldbasket as $key => $value) {
           if(array_key_exists($key,$newbasket)){
             $basket[$key] = $oldbasket[$key] + $newbasket[$key];
             unset($newbasket[$key]);
+            unset($oldbasket[$key]);
           }
         }
         //Adds the new items and the amount to the basket
-        $basket = $basket+$newbasket;
-
+        $basket = $basket + $oldbasket + $newbasket;
+        var_dump($basket);
         //Updates the session variable.
         $_SESSION['basket']=$basket;
-
         //Prints out the items and amount added to the basket
       if($items != ""){
           $status = 'The following items has been added to your basket: ' .$items;
         }else {
           $status = "Please select the amount of items you wish to add to your basket.";
         }
-
     }
 }
-
 ?>
 
 <?php require("inc/header.php"); ?>
