@@ -24,38 +24,38 @@ Note that the primary usage for some *AMP stacks (such as XAMPP, MAMP, WAMP, etc
 ### The fact that you use PHP, and which version, is sent in HTTP header
 Security through obscurity -> theoretically bad idea, ok in practice.
 Controlled in php.ini using:
-'''
+```
     expose_php=On|Off
-'''
+```
 Set to **Off**.
 ### Register globals
 If register_globals option is on then global variables can be set through GET or POST.
 This can be a security risk if programming is bad.
 Standard since PHP 4.2.0 is off. In php.ini:
-'''
+```
     register_globals = On|Off
-''''
+```
 Set to **Off**.
 ### Error reporting
 When developing the application it is advantageous to display all errors to screen. But in production, this can be a security risk.
-'''
+```
     display_errors = On|Off
-'''
+```
 Set to **Off**.
 And then store errors in logs instead (php.ini):
-'''
+```
     log_errors = On
     error_log = "/Applications/MAMP/logs/php_error.log"
-'''
+```
 Set log_errors to **On**.
 Note that error_log path differs between servers.
 ### Remote file inclusion
 To protect against *Mallory* running a malicious script on the server, disable allow_url_fopen.
 In php.ini:
-'''
+```
     allow_url_fopen = On|Off
     
-'''
+```
 Set to **Off**.
 ### Restrict directory access
 The default setting is to allow all files to be opened. By specifying a path with [open_basedir](http://php.net/manual/en/ini.core.php#ini.open-basedir) then only those directories can be opened.
@@ -63,5 +63,3 @@ In php.ini:
 ```
     open_basedir = path/to/webserver
 ```
-
-
