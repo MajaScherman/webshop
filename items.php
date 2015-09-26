@@ -28,15 +28,21 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
         }
         //Creates a new basket with the item names as keys and the amount as values
         $newbasket = array_combine($keys, $values);
-        //Retreives the array with the items which is currently in the basket.
-        $oldbasket = $_SESSION['basket'];
-        //Updates the amount for the items which already have been added to the basket
-        foreach ($oldbasket as $key => $value) {
-          if(array_key_exists($key,$newbasket)){
-            $basket[$key] = $oldbasket[$key] + $newbasket[$key];
-            unset($newbasket[$key]);
-            unset($oldbasket[$key]);
+
+        //Checks if the user already has a basket. If not creates an empty basket which acts as the oldbasket.
+        if( isset($_SESSION['basket'])){
+          //Retreives the array with the items which is currently in the basket.
+          $oldbasket = $_SESSION['basket'];
+          //Updates the amount for the items which already have been added to the basket
+          foreach ($oldbasket as $key => $value) {
+            if(array_key_exists($key,$newbasket)){
+              $basket[$key] = $oldbasket[$key] + $newbasket[$key];
+              unset($newbasket[$key]);
+              unset($oldbasket[$key]);
+            }
           }
+        }else {
+          $oldbasket = array();
         }
         //Adds the new items and the amount to the basket
         $basket = $basket + $oldbasket + $newbasket;
