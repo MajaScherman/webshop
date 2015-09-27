@@ -143,6 +143,41 @@ dbname=javacookie_db", $config["username"], $config["password"]);
             : null;
     }
 
+    /*
+       #------------------------------------------------------------------
+       # Creates an order
+       #------------------------------------------------------------------
+     */
+
+    public function createOrder($username, $ordernbr)
+    {
+        $bindings = array(
+            "username" => $username,
+            "ordernbr" => $ordernbr
+        );
+        $query_string = "INSERT INTO orders (username, ordernbr) VALUES(:username, :ordernbr)";
+        $result = $this->insertQuery($query_string, $bindings);
+        return $result;
+    }
+
+    /*
+       #------------------------------------------------------------------
+       # Creates an ordered item
+       #------------------------------------------------------------------
+     */
+
+    public function createOrderedItem($itemnbr, $ordernbr, $nbr)
+    {
+        $bindings = array(
+            "itemnbr" => $itemnbr,
+            "ordernbr" => $ordernbr,
+            "nbr" => $nbr
+        );
+        $query_string = "INSERT INTO ordered_items (itemnbr, ordernbr, nbr) VALUES(:itemnbr, :ordernbr, :nbr)";
+        $result = $this->insertQuery($query_string, $bindings);
+        return $result;
+    }
+
 }
 
 // --------------- TESTING BELOW: ----------------- //
