@@ -178,6 +178,20 @@ dbname=javacookie_db", $config["username"], $config["password"]);
         return $result;
     }
 
+    /*
+       #------------------------------------------------------------------
+       # NOT TESTED YET. Returns the item with the itemnbr $itemnbr's itemname
+       # Returns false if no item with that name
+       #------------------------------------------------------------------
+     */
+    public function getItemnameByItemnbr($itemnbr)
+    {
+        $bindings = array("itemnbr" => $itemnbr);
+        $item = $this->query_db("SELECT * FROM items WHERE itemnbr = :itemnbr", $bindings);
+        $itemnbr = $item[0];
+        return $itemnbr;
+    }
+
 }
 
 // --------------- TESTING BELOW: ----------------- //
