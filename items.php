@@ -21,7 +21,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
             if ($value != "0")
             {
               //Adds the item name and amount to the items string and the arrays which will be added to the basket
-                $items .= "</br>" . $value ." ". $key;
+                $items .= "</br>" . $key ." ". $value;
                 $keys[] = $key;
                 $values[] = $value;
             }
@@ -66,12 +66,28 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     <form action="" method="post">
         <p>Please select the items you wish to buy.</p>
 
-        Java(s): <select name="Java">
+        Java(s): <select name="1">
             <?php for ($i = 0; $i <= 5; $i++) : ?>
                 <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
             <?php endfor; ?>
         </select><br />
-        Cookie(s): <select name="Cookie">
+        Cookie(s): <select name="2">
+            <?php for ($i = 0; $i <= 5; $i++) : ?>
+                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+            <?php endfor; ?>
+        </select><br />
+        Chocolate Cookie(s): <select name="3">
+            <?php for ($i = 0; $i <= 5; $i++) : ?>
+                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+            <?php endfor; ?>
+        </select><br />
+
+        Fairtrade Java(s): <select name="4">
+            <?php for ($i = 0; $i <= 5; $i++) : ?>
+                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+            <?php endfor; ?>
+        </select><br />
+        Surprise Cookie & Java set(s): <select name="5">
             <?php for ($i = 0; $i <= 5; $i++) : ?>
                 <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
             <?php endfor; ?>
