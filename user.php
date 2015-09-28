@@ -63,7 +63,6 @@ if ( isset($_SESSION["username"]) ) {
             sollicitudin aliquam ultrices sagittis orci, a scelerisque
             purus semper eget duis at tellus.
         </p>
-
     </div>
 
 </div>

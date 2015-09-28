@@ -1,5 +1,11 @@
-body{
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
     background-color: #fdf5c9;
+    margin: 0 0 60px; /* bottom = footer height */
 }
 
 .container {
@@ -25,6 +31,7 @@ footer {
     text-align: center;
     color: #fdf5c9;
     width: 100%;
+    margin-top: 10px;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -108,6 +115,8 @@ nav ul {
 }
 
 /* User page */
+.wrapper {
+}
 .user-info ul {
     list-style: none;
     padding-left: 15px;

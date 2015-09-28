@@ -23,7 +23,7 @@ Note that the primary usage for some *AMP stacks (such as XAMPP, MAMP, WAMP, etc
 
 ### Hide server information
 Security through obscurity -> theoretically bad idea, ok in practice.
-The fact that you usp PHP and which version is sent in HTTP header. To make it harder for an attacker ta attack the site this information can be hidden.
+The fact that you use PHP and which version is sent in HTTP header. To make it harder for an attacker ta attack the site this information can be hidden.
 
 To hide php information (in php.ini): 
 ```
