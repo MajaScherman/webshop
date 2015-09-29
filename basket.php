@@ -12,16 +12,22 @@ $db = new Database($config);
 <?php
 /*BASKET DISPLAY - Checks if basket is empty, if so then tells the user that.
   Otherwise displays the content of the basket.*/
-if(!isset($_SESSION['basket'])){
+if(!isset($_SESSION['basket'])|| empty($_SESSION['basket'])){
     $status = "Basket is empty";
 }else {
+    $basket = $_SESSION['basket'];
+    echo "This is your basket. here you can choose to buy the items currently in your basket.";
   //Open the table and its first row
   echo "<table>";
-  //Iterates through the basket and creates a table with the content.
-  $basket = $_SESSION['basket'];
+  echo "<tr>";
+  echo "<td><b> Item </b></td>";
+  echo "<td><b> Amount</b> </td>";
+  echo "</tr>";
+    //Iterates through the basket and creates a table with the content.
   foreach ($basket as $key => $value) {
+    $item= $db->getItemByItemnbr($key);
     echo "<tr>";
-    echo "<td>". $key ."</td>";
+    echo "<td>". $item["itemname"] ."</td>";
     echo "<td>". $value ."</td>";
     echo "</tr>";
   }
@@ -33,33 +39,40 @@ if(!isset($_SESSION['basket'])){
 
 if ( $_SERVER["REQUEST_METHOD"] == "POST") {
 
-  //Creates a new order
+  //Collects the username
   $username = $_SESSION["username"];
-  $ordernbr = 1; //METHOD FOR SETTING UNIQUE ORDER NBR?
+  //Creates a new ordernbr and checks if the ordernbr is free.
+  $result[1] = 1;
+  while (!empty($result[1])){
+    $ordernbr = rand();
+    $result = $db->getOrderByOrdernbr($ordernbr);
+  }
 
+  //Creates a new order in the db if the basket is not empty
   if(!isset($_SESSION['basket'])){
     $status = "The basket is empty. Please add an item to the basket before pressing the buy button";
   }else {
-    $result = $db->createOrder($username, $ordernbr);
-    if ($result)  {
-        // Mostly for debugging, change later?
-        echo "Order has been created.";
-    } else {
-        echo "Order failed. ";
+    $basketresult = $db->createOrder($username, $ordernbr);
+    if (!$basketresult)  {
+      $status = "Failed to create an order";
     }
+
+    //Creates ordered items in the db
     foreach ($basket as $key => $value) {
       $itemnbr = $key;
-      //ordernbr already set earlier
       $nbr = $value;
-      $result = $db->createOrderedItem($itemnbr, $ordernbr, $nbr);
-      if ($result)  {
-          // Mostly for debugging, change later?
-          echo "Item has been added to order.";
-      } else {
-          echo "Item could not be added to order.";
+      $itemresult = $db->createOrderedItem($itemnbr, $ordernbr, $nbr);
+      if (!$itemresult)  {
+        $status = "Failed to order item";
       }
     }
-    $status = "Your order has been sent";
+    if($basketresult && $itemresult){
+      $status = "Your order has been sent";
+    }else {
+      $status = $basketresult ." and ". $itemresult;
+    }
+    //Resets the basket
+    $_SESSION['basket']=array();
   }
 }
 if ( isset($status) ) {

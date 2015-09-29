@@ -180,17 +180,33 @@ dbname=javacookie_db", $config["username"], $config["password"]);
 
     /*
        #------------------------------------------------------------------
-       # NOT TESTED YET. Returns the item with the itemnbr $itemnbr's itemname
-       # Returns false if no item with that name
+       # Returns the item with the itemnbr $itemnbr.
+       # Returns false if no item with that itemnbr
        #------------------------------------------------------------------
      */
-    public function getItemnameByItemnbr($itemnbr)
+    public function getItemByItemnbr($indexnbr)
     {
-        $bindings = array("itemnbr" => $itemnbr);
-        $item = $this->query_db("SELECT * FROM items WHERE itemnbr = :itemnbr", $bindings);
-        $itemnbr = $item[0];
-        return $itemnbr;
+        $bindings = array("indexnbr" => $indexnbr);
+        $item = $this->query_db("SELECT * FROM items WHERE indexnbr= :indexnbr", $bindings);
+        $item = $item[0];
+        return $item;
     }
+
+    /*
+       #------------------------------------------------------------------
+       # Returns the order with the ordernbr $ordernbr.
+       # Returns false if no order with that ordernbr.
+       #------------------------------------------------------------------
+     */
+    public function getOrderByOrdernbr($ordernbr)
+    {
+        $bindings = array("ordernbr" => $ordernbr);
+        $order = $this->query_db("SELECT * FROM orders WHERE ordernbr= :ordernbr", $bindings);
+        $order = $order[0];
+        return $order;
+    }
+
+
 
 }
 
@@ -229,5 +245,4 @@ dbname=javacookie_db", $config["username"], $config["password"]);
    // http://dev.mysql.com/doc/refman/5.5/en/error-messages-server.html
    }
    }  */
-
 ?>
