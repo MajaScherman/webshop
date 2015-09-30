@@ -103,7 +103,7 @@ In php.ini:
 myapp.cfg.DB_HOST = 'mysql:host=127.0.0.1;dbname=mydatabase'
 myapp.cfg.DB_USER = 'dbusername'
 myapp.cfg.DB_PASS = 'dbpassword'
-``
+```
 And these variables can be read and assigned with the following code:
 
 ```
