@@ -103,8 +103,9 @@ In php.ini:
 myapp.cfg.DB_HOST = 'mysql:host=127.0.0.1;dbname=mydatabase'
 myapp.cfg.DB_USER = 'dbusername'
 myapp.cfg.DB_PASS = 'dbpassword'
-```
-Sedan kan dessa variabler läsas in och sättas globalt med följande kod:
+``
+And these variables can be read and assigned with the following code:
+
 ```
 // Very simple loader
 function loadConfig( $vars = array() ) {
