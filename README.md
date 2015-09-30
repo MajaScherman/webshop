@@ -54,6 +54,7 @@ Note that error_log path differs between servers.
 ### Remote file inclusion
 To protect against *Mallory* running a malicious script on the server, disable allow_url_fopen.
 In php.ini:
+
 ```
     allow_url_fopen = On|Off
     
@@ -62,6 +63,57 @@ Set to **Off**.
 ### Restrict directory access
 The default setting is to allow all files to be opened. By specifying a path with [open_basedir](http://php.net/manual/en/ini.core.php#ini.open-basedir) then only those directories can be opened.
 In php.ini:
+
 ```
     open_basedir = path/to/webserver
+```
+### Restrict cookie access to only html
+Marks the cookie as accessible only through the HTTP protocol. This means that the cookie won't be accessible by scripting languages, such as JavaScript. This setting can effectively help to reduce identity theft through XSS attacks (although it is not supported by all browsers). http://php.net/manual/en/session.configuration.php#ini.session.cookie-httponly
+In php.ini:
+
+```
+session.cookie_httponly = 1
+```
+### Hide database password
+The password should not be visible in the php file. Instead this should be kept in another file that isn't as excessable to the application.
+#### Mysqli
+If you are using mysqli_connect() you can do as follows:
+
+```
+$db = mysqli_connect(’host',’mysqlUser','mysqlPassword’);
+```
+And in httpd.conf file:
+
+```
+￼<Directory /www/somefolder>
+php_value mysql.default.user myusername php_value mysql.default.password mypassword php_value mysql.default.host server.
+</Directory>
+```
+And connect with
+
+```
+$db = mysqli_connect();
+```
+#### PDO
+The settings could be set in the php.ini file.
+In php.ini:
+
+```
+[MyCustomApp]
+myapp.cfg.DB_HOST = 'mysql:host=127.0.0.1;dbname=mydatabase'
+myapp.cfg.DB_USER = 'dbusername'
+myapp.cfg.DB_PASS = 'dbpassword'
+```
+Sedan kan dessa variabler läsas in och sättas globalt med följande kod:
+```
+// Very simple loader
+function loadConfig( $vars = array() ) {
+    foreach( $vars as $v ) {
+        define( $v, get_cfg_var( "myapp.cfg.$v" ) );
+    }
+}
+ 
+// Then call :
+$cfg = array( 'DB_HOST', 'DB_USER', 'DB_PASS' );
+loadConfig( $cfg );
 ```
