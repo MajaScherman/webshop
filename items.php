@@ -1,7 +1,12 @@
 <?php
 session_start();
-// Creates basket array.
+require "config.php";
+require "class/db.php";
+require "functions.php";
 
+$db = new Database($config);
+
+// Creates basket array.
 $basket=array();
 //$_SESSION['basket']=$basket;
 if ( $_SERVER["REQUEST_METHOD"] == "POST") {
@@ -21,7 +26,9 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
             if ($value != "0")
             {
               //Adds the item name and amount to the items string and the arrays which will be added to the basket
-                $items .= "</br>" . $key ." ". $value;
+                $item = $db->getItemByItemnbr($key);
+                $itemname = $item["itemname"];
+                $items .= "</br>" . $value ." ". $itemname;
                 $keys[] = $key;
                 $values[] = $value;
             }

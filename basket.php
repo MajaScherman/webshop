@@ -8,10 +8,11 @@ $db = new Database($config);
 ?>
 
 <?php require "inc/header.php"; ?>
-
+<h1> Basket </h1>
 <?php
 /*BASKET DISPLAY - Checks if basket is empty, if so then tells the user that.
   Otherwise displays the content of the basket.*/
+  $orderSent = false;
 if(!isset($_SESSION['basket'])|| empty($_SESSION['basket'])){
     $status = "Basket is empty";
 }else {
@@ -55,6 +56,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     $basketresult = $db->createOrder($username, $ordernbr);
     if (!$basketresult)  {
       $status = "Failed to create an order";
+      $orderSent = false;
     }
 
     //Creates ordered items in the db
@@ -64,22 +66,38 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
       $itemresult = $db->createOrderedItem($itemnbr, $ordernbr, $nbr);
       if (!$itemresult)  {
         $status = "Failed to order item";
+        $orderSent = false;
       }
     }
     if($basketresult && $itemresult){
       $status = "Your order has been sent";
+      $orderSent = true;
+
     }else {
       $status = $basketresult ." and ". $itemresult;
     }
-    //Resets the basket
-    $_SESSION['basket']=array();
+
   }
 }
 if ( isset($status) ) {
  echo  $status ;
 }
 ?>
-<form action="" method="post">
-<input type="submit" value="Buy" /><br />
-</form>
+
+<?php
+if($orderSent == false){
+  ?>
+  <form action="" method="post">
+  <input type="submit" value="Checkout" /><br />
+  </form>
+  <?php
+}else {
+  ?>
+  <form action="" method="post">
+  <input type="button" value="Pay" onclick="window.location.href='receipt.php'"/><br />
+  </form>
+  <?php
+}
+?>
+
 <?php require "inc/footer.php"; ?>
