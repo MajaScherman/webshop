@@ -7,7 +7,6 @@ session_start();
 
 
 $db = new Database($config);
-
 if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $username = $_POST["username"];
@@ -18,9 +17,20 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
         // log in user
         if ( authenticateUser($username,$password,$db)){
             $_SESSION["username"] = $username;
+            $_SESSION["loginCounter"]= 0;
             header("Location: user.php");
         }else {
             $status = "Wrong username or password";
+            $_SESSION["loginCounter"] = $_SESSION["loginCounter"] +1;
+            if($_SESSION["loginCounter"] == 2){
+              $status = "Login failed 2 times. Next failed login attempt will
+               lead to a 5s wait before you can try to login again.";
+            }
+            if($_SESSION["loginCounter"] >= 3){
+              $_SESSION["loginCounter"]= 0;
+              sleep(5);
+
+            }
         }
     }
 }
