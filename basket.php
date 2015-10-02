@@ -79,24 +79,28 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
 
   }
 }
-if ( isset($status) ) {
- echo  $status ;
-}
+
 ?>
 
 <?php
-if($orderSent == false && isset($_SESSION['basket']) && !empty($_SESSION['basket'])){
+if (!isset($_SESSION["username"]) ) {
+  $status = "Please login or register to buy your items";
+}elseif(isset($_SESSION["username"]) && $orderSent == false && isset($_SESSION['basket']) && !empty($_SESSION['basket'])){
   ?>
   <form action="" method="post">
   <input type="submit" value="Checkout" /><br />
   </form>
   <?php
-}else if($orderSent) {
+}else if(isset($_SESSION["username"]) && $orderSent) {
   ?>
   <form action="" method="post">
   <input type="button" value="View receipt" onclick="window.location.href='receipt.php'"/><br />
   </form>
   <?php
+}
+
+if ( isset($status) ) {
+ echo  $status ;
 }
 ?>
 
