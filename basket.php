@@ -85,16 +85,16 @@ if ( isset($status) ) {
 ?>
 
 <?php
-if($orderSent == false){
+if($orderSent == false && isset($_SESSION['basket']) && !empty($_SESSION['basket'])){
   ?>
   <form action="" method="post">
   <input type="submit" value="Checkout" /><br />
   </form>
   <?php
-}else {
+}else if($orderSent) {
   ?>
   <form action="" method="post">
-  <input type="button" value="Pay" onclick="window.location.href='receipt.php'"/><br />
+  <input type="button" value="View receipt" onclick="window.location.href='receipt.php'"/><br />
   </form>
   <?php
 }
