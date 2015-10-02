@@ -53,7 +53,6 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
         }
         //Adds the new items and the amount to the basket
         $basket = $basket + $oldbasket + $newbasket;
-        var_dump($basket);
         //Updates the session variable.
         $_SESSION['basket']=$basket;
         //Prints out the items and amount added to the basket
