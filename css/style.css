@@ -148,3 +148,40 @@ nav ul {
     content: "";
     display: table;
 }
+
+
+/* Basket page */
+
+.basket table{
+    width: 400px;
+    margin: 20px auto;
+    text-align: center;
+    border: 1px solid #FFFBE4;
+    border-bottom: 2px solid #A148A2;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.10),
+    0px 10px 20px rgba(0,0,0,0.05),
+    0px 20px 20px rgba(0,0,0,0.05),
+    0px 30px 20px rgba(0,0,0,0.05);
+    border-radius: 4px;
+}
+
+.basket th {
+    font-size: 1.3em;
+    border-bottom: 2px solid #A148A2;
+}
+
+.basket tr {
+    font-size: 1.2em;
+}
+
+.basket td {
+    padding-right: 5px;
+}
+
+.basket tbody tr:nth-child(odd) {
+    background: #FFFBE4;
+}
+
+.basket th, td {
+    padding: 5px;
+}
