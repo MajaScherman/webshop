@@ -9,7 +9,7 @@ $db = new Database($config);
 
 <?php require "inc/header.php"; ?>
 <h1> Basket </h1>
-<div class="basket">
+<div class="basket center-text">
     <?php
     /*BASKET DISPLAY - Checks if basket is empty, if so then tells the user that.
        Otherwise displays the content of the basket.*/
