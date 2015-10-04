@@ -56,9 +56,10 @@ if ( isset($_SESSION["username"]) ) {
         ?>
         <p>
             <?php if($items == 0) : ?>
-                You have no items in your basket. To add items, go to the <a href="items.php">items</a> page.
+                It seems like your basket is empty. Surely you have worked hard enough to
+                enjoy some delicious treats. Visit <a href="items.php">items</a> to order some sweet stuff.
             <?php else: ?>
-                You have currently <?= $items;?> item(s) in your <a href="basket.php">basket</a>.
+                You have currently <?= $items;?> delicious item(s) in your <a href="basket.php">basket</a>.
             <?php endif; ?>
         </p>
     </div>
