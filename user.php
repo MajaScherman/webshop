@@ -44,24 +44,22 @@ if ( isset($_SESSION["username"]) ) {
         </div>
     <?php endif; ?>
     <div class="user-content">
-        <p>Welcome to your user page! Here you can find almost nothing atm...</p>
-        <p>Some dummy text:</p>
+        <p>Welcome <?= $givenname; ?> to your user page! </p>
+        <?php
+        if ( isset ($_SESSION["basket"])) {
+            $basket = $_SESSION["basket"];
+            $items = 0;
+            foreach ($basket as $value) {
+                $items += $value;
+            }
+        }
+        ?>
         <p>
-            Quam quisque id diam vel quam elementum pulvinar etiam non
-            quam lacus suspendisse faucibus interdum posuere lorem
-            ipsum dolor sit amet, consectetur adipiscing. Amet tellus
-            cras adipiscing enim eu turpis?  Neque, vitae tempus quam
-            pellentesque nec nam aliquam sem et! Hendrerit lectus a
-            molestie lorem ipsum dolor sit amet, consectetur
-            adipiscing elit ut aliquam, purus sit amet luctus
-            venenatis, lectus!  Nunc vel risus commodo viverra
-            maecenas accumsan, lacus vel facilisis volutpat, est velit
-            egestas dui, id ornare arcu odio ut sem nulla pharetra
-            diam! Nibh sit amet commodo nulla facilisi?  Vulputate
-            sapien nec sagittis aliquam malesuada bibendum arcu. Id
-            cursus metus aliquam eleifend mi in nulla posuere
-            sollicitudin aliquam ultrices sagittis orci, a scelerisque
-            purus semper eget duis at tellus.
+            <?php if($items == 0) : ?>
+                You have no items in your basket. To add items, go to the <a href="items.php">items</a> page.
+            <?php else: ?>
+                You have currently <?= $items;?> item(s) in your <a href="basket.php">basket</a>.
+            <?php endif; ?>
         </p>
     </div>
 
