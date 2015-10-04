@@ -94,7 +94,7 @@ $db = new Database($config);
     
 <?php
 if (!isset($_SESSION["username"]) ) {
-    $status = "Please login or register to buy your items";
+    $status = "Please login or register to buy your items.";
 }elseif(isset($_SESSION["username"]) && $orderSent == false && isset($_SESSION['basket']) && !empty($_SESSION['basket'])){
 ?>
     <form action="" method="post">

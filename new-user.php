@@ -41,28 +41,67 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php require("inc/header.php") ?>
 
-<h3>This is where you create a new user.</h3>
+<h1>Register</h1>
 <div class="center-text">
-<p>
-  <form action="" method="post">
-    <label for="username">Username :</label>
-    <input type="text" name="username"/><br />
-    <label for="password">Password :</label>
-    <input type="password" name="password"/><br/>
-    <label for="homeaddress">Home address :</label>
-    <input type="text" name="homeaddress"/><br/>
-    <label for="givenname">Given name :</label>
-    <input type="text" name="givenname"/><br/>
-    <label for="surname">Surname :</label>
-    <input type="text" name="surname"/><br/>
-    <label for="email">Email :</label>
-    <input type="text" name="email"/><br/>
-    <input type="submit" value=" Register "/><br />
+    <p>
+        <form action="" method="post">
+            <table class="table-register" >
+                <tr>
+                    <td>
+                        <label for="username">Username :</label>
+                    </td>
+                    <td>
+                        <input type="text" name="username"/><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="password">Password :</label>
+                    </td>
+                    <td>
+                        <input type="password" name="password"/><br/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="homeaddress">Home address :</label>
+                    </td>
+                    <td>
+                        <input type="text" name="homeaddress"/><br/>
+                    </td>
+                </tr>
+                <tr>
+                <td>
+                    <label for="givenname">Given name :</label>
+                </td>
+                <td>
+                    <input type="text" name="givenname"/><br/>
+                </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="surname">Surname :</label>
+                    </td>
+                    <td>
+                        <input type="text" name="surname"/><br/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="email">Email :</label>
+                    </td>
+                    <td>
+                        <input type="text" name="email"/><br/>
+                    </td>
+                </tr>
+            </table>
 
-    <?php if ( isset($status) ) : ?>
-    <?= $status ;?>
-    <?php endif ?>
-  </form>
+            <input type="submit" value=" Register "/><br />
+            
+            <?php if ( isset($status) ) : ?>
+                <?= $status ;?>
+            <?php endif ?>
+        </form>
 </p>
 </div>
 

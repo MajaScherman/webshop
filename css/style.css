@@ -220,3 +220,20 @@ nav ul {
     border-radius: 0;
     height: 30px;
 }
+
+/* New user page */
+.table-register {
+    margin: 20px auto;
+    text-align: right;
+    font-size: 1.1em;
+}
+
+
+.table-register td {
+    padding: 1px;
+}
+
+.table-register input {
+    background: #FFFBE4;
+    font-size: 1.0em;
+}
