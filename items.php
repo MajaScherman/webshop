@@ -67,7 +67,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php require("inc/header.php"); ?>
 
-<h1>This is the item page.</h1>
+<h1>Item</h1>
 <div class="center-text">
     <form action="" method="post">
         <p>Please select the items you wish to buy.</p>

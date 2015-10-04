@@ -1,10 +1,10 @@
 <?php
-require "config.php";
-require "class/db.php";
-require "functions.php";
 
 session_start();
 
+require "config.php";
+require "class/db.php";
+require "functions.php";
 
 $db = new Database($config);
 if ( $_SERVER["REQUEST_METHOD"] == "POST") {
