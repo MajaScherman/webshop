@@ -54,7 +54,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
         //Adds the new items and the amount to the basket
         $basket = $basket + $oldbasket + $newbasket;
         //Updates the session variable.
-        $_SESSION['basket']=$basket;
+        $_SESSION['basket'] = $basket;
         //Prints out the items and amount added to the basket
       if($items != ""){
           $status = 'The following items has been added to your basket: ' .$items;
@@ -106,5 +106,10 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
             <?= $status ;?>
         <?php endif ?>
     </form>
+    <?php if ( isset($items) ): ?>
+        <p>
+            Go to <a href="basket.php">basket</a> to view your ordered items.
+        </p>
+    <?php endif; ?>
 </div>
 <?php require("inc/footer.php");
