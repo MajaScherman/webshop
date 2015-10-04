@@ -74,6 +74,17 @@ In php.ini:
 ```
 session.cookie_httponly = 1
 ```
+
+### Restrict session to only use cookies
+From the comment inside php.ini:
+This option enables administrators to make their users invulnerable to
+attacks which involve passing session ids in URLs; defaults to 0.
+Change in php.ini:
+
+```
+session.use_only_cookies = 1
+```
+
 ### Hide database password
 The password should not be visible in the php file. Instead this should be kept in another file that isn't as excessable to the application.
 #### Mysqli
