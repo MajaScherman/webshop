@@ -221,19 +221,21 @@ nav ul {
     height: 30px;
 }
 
-/* New user page */
-.table-register {
+/* New user page and login page */
+.table-register, .table-login{
     margin: 20px auto;
     text-align: right;
     font-size: 1.1em;
 }
 
 
-.table-register td {
+.table-register td ,.table-login td {
     padding: 1px;
 }
 
-.table-register input {
+.table-register input, .table-login input{
     background: #FFFBE4;
     font-size: 1.0em;
 }
+
+

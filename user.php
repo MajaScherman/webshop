@@ -55,7 +55,7 @@ if ( isset($_SESSION["username"]) ) {
         }
         ?>
         <p>
-            <?php if($items == 0) : ?>
+            <?php if( !isset($items) || $items == 0) : ?>
                 It seems like your basket is empty. Surely you have worked hard enough to
                 enjoy some delicious treats. Visit <a href="items.php">items</a> to order some sweet stuff.
             <?php else: ?>

@@ -18,7 +18,7 @@ $db = new Database($config);
         $status = "Basket is empty";
     } else {
         $basket = $_SESSION['basket'];
-        echo "This is your basket. Here you can choose to buy the items currently in your basket.";
+        echo "This is your basket. When pressing checkout below, 100 extremely well-trained monkeys will collect you order from our enormous warehouse and gently put it onto a silk pillow. Then - using magic so powerful that Gandalf would choke on his afternoon tea - we will magically send this to you. ";
         //Open the table and its first row
         echo "<table>";
         echo "<thead>";

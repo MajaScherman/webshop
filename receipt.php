@@ -30,4 +30,7 @@ echo "</table>";
 //Resets the basket
 $_SESSION['basket']=array();
 ?>
+<p>
+    Thanks for shopping with us. Hope your experience was as good as ours. We should do this again sometime soon. Your portrait has been printed at our office and put on our wall as 'Customer of the year'. Cheers!
+</p>
 <?php require "inc/footer.php"; ?>

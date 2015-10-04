@@ -38,19 +38,35 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php require("inc/header.php") ?>
 
-<h1> Login to JAVA and COOKIES awesome webshop!</h1>
+<h1>Login</h1>
 <div class="center-text">
     <form action="" method="post">
-        <label for="username">UserName :</label>
-        <input type="text" name="username"/><br />
-        <label for="password">Password :</label>
-        <input type="password" name="password"/><br/>
-        <input type="submit" value=" Submit "/><br />
+        <table class="table-login" >
+            <tr>
+                <td>
+                    <label for="username">UserName :</label>
+                </td>
+                <td>
+                    <input type="text" name="username"/><br />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="password">Password :</label>
+                </td>
+                <td>
+                    <input type="password" name="password"/><br/>
+                </td>
+            </tr>
+        </table>
 
+        <input type="submit" value=" Submit "/><br />        
+
+                    
         <?php if ( isset($status) ) : ?>
             <?= $status ;?>
         <?php endif ?>
-
     </form>
+
 </div>
 <?php require("inc/footer.php") ?>
