@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
 		<title>Java and Cookies!</title>
 	</head>
     <body>

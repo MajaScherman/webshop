@@ -6,6 +6,8 @@ html {
 body {
     background-color: #fdf5c9;
     margin: 0 0 60px; /* bottom = footer height */
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.1em;
 }
 
 .container {
