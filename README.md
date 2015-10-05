@@ -85,6 +85,22 @@ Change in php.ini:
 session.use_only_cookies = 1
 ```
 
+### Add additional entropy source in the session id creation process
+From the php documentation:
+session.entropy_file gives a path to an external resource (file) which will be used as an additional entropy source in the session id creation process. Examples are /dev/random or /dev/urandom which are available on many Unix systems. This feature is supported on Windows since PHP 5.3.3. Setting session.entropy_length to a non zero value will make PHP use the Windows Random API as entropy source.
+Note: As of PHP 5.4.0 session.entropy_file defaults to /dev/urandom or /dev/arandom if it is available. In PHP 5.3.0 this directive is left empty by default.
+
+Comment out in php.ini:
+```
+;session.entropy_file =
+```
+
+Uncomment in php.ini:
+
+```
+session.entropy_file = /dev/urandom
+```
+
 ### Hide database password
 The password should not be visible in the php file. Instead this should be kept in another file that isn't as excessable to the application.
 #### Mysqli
