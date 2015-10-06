@@ -40,6 +40,26 @@ dbname=javacookie_db", $config["username"], $config["password"]);
 
     /*
        #------------------------------------------------------------------
+       # Unsafe db query method. 
+       # Note that by using query the entered data needs to be escaped
+       # to avoid SQL injections.
+       #------------------------------------------------------------------
+     */
+    public function unsafeDbQuery($query)
+    {
+        try {
+            $result = $this->conn->query($query);
+
+            return $result;
+            
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+
+    /*
+       #------------------------------------------------------------------
        # Runs a prepared statement with specified bindings.
        # Should be used when something should be returned.
        # By using prepared statement there is no need to escape or quote
