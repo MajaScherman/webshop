@@ -33,7 +33,7 @@ function authenticateUser($username, $password, $db)
  */
 function validEmail($email)
 {
-    return filter_var( $email, FILTER_VALIDATE_EMAIL );
+    return preg_match('/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/', $email);
 }
 
 ?>
