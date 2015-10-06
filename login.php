@@ -10,7 +10,7 @@ $db = new Database($config);
 if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $username = $_POST["username"];
-    $username = htmlspecialchars($username);
+    $username = $username;
     if ( empty($password) || empty($username)) {
         $status = "Missing username or password.";
     } else {
@@ -27,8 +27,8 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
                lead to a 5s wait before you can try to login again.";
             }
             if($_SESSION["loginCounter"] >= 3){
-              $_SESSION["loginCounter"]= 0;
-              sleep(5);
+                $_SESSION["loginCounter"]= 0;
+//                sleep(5);
 
             }
         }

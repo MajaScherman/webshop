@@ -47,11 +47,12 @@ dbname=javacookie_db", $config["username"], $config["password"]);
      */
     public function unsafeDbQuery($query)
     {
+        echo $query;
         try {
             $result = $this->conn->query($query);
 
-            return $result;
-            
+            return $result->fetchAll();
+
         } catch (Exception $e) {
             return false;
         }
@@ -237,7 +238,9 @@ dbname=javacookie_db", $config["username"], $config["password"]);
    "password" => ""
    );
    $db = new Database($config);
-   /*
+   $result = $db->unsafeDbQuery("select * from users where username = 'nisse1'");
+ */
+/*
    $bind = array(
    "id" => 1
    );
