@@ -1,6 +1,9 @@
-# webshop
-
+# webshop 
 This is a simple webshop that we use to practice web security.
+
+##hackit branch
+This branch have several vulnerabilities and can be used to practice attacks.
+It have been weakened in several aspects, and it is possible to do, amongst other attacks, SQL injection and CSRF.
 
 ## Files:
 * css/style.css </br>
