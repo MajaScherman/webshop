@@ -8,7 +8,7 @@ session_destroy();
 
 $_SESSION = array();
 
-// delete cookies...
+// delete session data
 
 header("Location: index.php");
 

@@ -19,9 +19,10 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
         $status = "Please fill in every field";
     } else if ( !validEmail($email)) {
         $status = "Please enter a valid email. ";
-    } else if (!preg_match("%^[A-Za-z0-9-_]{3,100}$%", $_POST["password"])) {
-        $status = "The username can only consist of letters, numbers, - and _.
-      The password should be at least 3 charachers long.";
+    } else if (!preg_match("%^[A-Za-z0-9-_]{1,100}$%", $_POST["username"])) {
+        $status = "The username can only consist of letters, numbers, - and _.";
+    } else if(strlen($_POST["password"]) < 2) {
+        $status = "The password should be at least 3 charachers long.";
     } else {
         //Register user
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
