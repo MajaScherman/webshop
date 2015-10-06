@@ -98,12 +98,16 @@ if (!isset($_SESSION["username"]) ) {
 }elseif(isset($_SESSION["username"]) && $orderSent == false && isset($_SESSION['basket']) && !empty($_SESSION['basket'])){
 ?>
     <form action="" method="post">
+        <input type='hidden' name='CSRF_token' value='<?php
+        echo($_SESSION['CSRF_token']) ?>' />
         <input type="submit" value="Checkout" /><br />
     </form>
 <?php
 }else if(isset($_SESSION["username"]) && $orderSent) {
   ?>
   <form action="" method="post">
+    <input type='hidden' name='CSRF_token' value='<?php
+     echo($_SESSION['CSRF_token']) ?>' />
   <input type="button" value="View receipt" onclick="window.location.href='receipt.php'"/><br />
   </form>
   <?php

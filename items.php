@@ -12,6 +12,8 @@ $basket=array();
 if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     if(empty($_POST)){
         $status = "POST is empty";
+    } elseif(!isset($_POST['CSRF_token']) || $_POST['CSRF_token'] != $_SESSION['CSRF_token']){
+        $status = "POST is not valid";
     }else {
         //Creates arrays to hold the keys and their values which the user has choosen.
         //These will later be added to
@@ -23,7 +25,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
         foreach($_POST as $key => $value)
         {
             //Picks out the items which the user has set an amount for which is not 0.
-            if ($value != "0")
+            if ($value != "0" && $key != "CSRF_token")
             {
                 //Adds the item name and amount to the items string and the arrays which will be added to the basket
                 $item = $db->getItemByItemnbr($key);
@@ -33,6 +35,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
                 $values[] = $value;
             }
         }
+
         //Creates a new basket with the item names as keys and the amount as values
         $newbasket = array_combine($keys, $values);
 
@@ -70,6 +73,9 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
 <h1>Item</h1>
 <div class="center-text">
     <form action="" method="post">
+    <input type='hidden' name='CSRF_token' value='<?php
+     echo($_SESSION['CSRF_token']) ?>' />
+
         <p>Please select the items and the amount that you wish to buy.</p>
         <div class="items clear">
             <div class="item">

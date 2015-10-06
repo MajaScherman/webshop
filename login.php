@@ -18,6 +18,8 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
         if ( authenticateUser($username,$password,$db)){
             $_SESSION["username"] = $username;
             $_SESSION["loginCounter"]= 0;
+            $randomtoken = base64_encode( openssl_random_pseudo_bytes(32));
+            $_SESSION["CSRF_token"] = $randomtoken;
             header("Location: user.php");
         }else {
             $status = "Wrong username or password";
