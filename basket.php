@@ -17,9 +17,12 @@ $db = new Database($config);
     if( !isset($_SESSION['basket'])|| empty($_SESSION['basket']) ) {
         $status = "Basket is empty";
     } else {
+      //Prints out a table with the content of the basket
         $basket = $_SESSION['basket'];
-        echo "This is your basket. When pressing checkout below, 100 extremely well-trained monkeys will collect you order from our enormous warehouse and gently put it onto a silk pillow. Then - using magic so powerful that Gandalf would choke on his afternoon tea - we will magically send this to you. ";
-        //Open the table and its first row
+        echo "This is your basket. When pressing checkout below, 100 extremely
+        well-trained monkeys will collect you order from our enormous warehouse
+        and gently put it onto a silk pillow. Then - using magic so powerful that
+        Gandalf would choke on his afternoon tea - we will magically send this to you. ";
         echo "<table>";
         echo "<thead>";
         echo "<tr>";
@@ -28,7 +31,8 @@ $db = new Database($config);
         echo "</tr>";
         echo "</thead>";
         echo "<tbody>";
-        //Iterates through the basket and creates a table with the content.
+        //Iterates through the basket and fills the table with the content of the basket
+        // $key is the itemnbr and $value is the amount.
         foreach ($basket as $key => $value) {
             $item= $db->getItemByItemnbr($key);
             echo "<tr>";
@@ -36,22 +40,26 @@ $db = new Database($config);
             echo "<td>". $value ."</td>";
             echo "</tr>";
         }
-        //Close the table row and the table
         echo "</tbody>";
         echo "</table>";
     }
 
-    /*BUY CONTENT OF BASKET*/
+    /*BUY THE CONTENT OF BASKET*/
 
     if ( $_SERVER["REQUEST_METHOD"] == "POST") {
         if ( !isset( $_SESSION["username"] ) ) {
             // User is not logged in.
             $status = "Please login to proceed with order. ";
+
+        // Checks that the CSRF_token is valid. This will protect against CSRF attacks.
+        } elseif(!isset($_POST['CSRF_token']) || $_POST['CSRF_token'] != $_SESSION['CSRF_token']){
+              $status = "POST is not valid";
         } else {
-            
+
             //Collects the username
             $username = $_SESSION["username"];
             //Creates a new ordernbr and checks if the ordernbr is free.
+            //The ordernbr is free if $db->getOrderByOrdernbr($ordernbr) result is empty
             $result[1] = 1;
             while (!empty($result[1])){
                 $ordernbr = rand();
@@ -63,6 +71,7 @@ $db = new Database($config);
                 $status = "The basket is empty. Please add an item to the basket before pressing the buy button";
             }else {
                 $basketresult = $db->createOrder($username, $ordernbr);
+                // if createOrder returns false it means that the order could not be created.
                 if (!$basketresult)  {
                     $status = "Failed to create an order";
                     $orderSent = false;
@@ -71,19 +80,21 @@ $db = new Database($config);
                 //Creates ordered items in the db
                 foreach ($basket as $key => $value) {
                     $itemnbr = $key;
+
+                    // the amount is called nbr in the database
                     $nbr = $value;
                     $itemresult = $db->createOrderedItem($itemnbr, $ordernbr, $nbr);
+                    // if createOrderedItem returns false it means that the orderedItem could not be created.
                     if (!$itemresult)  {
                         $status = "Failed to order item";
                         $orderSent = false;
                     }
                 }
+                // If both succeeds then the order was created successfully
                 if($basketresult && $itemresult){
                     $status = "Your order has been sent";
                     $orderSent = true;
 
-                }else {
-                    $status = $basketresult ." and ". $itemresult;
                 }
 
             }
@@ -91,10 +102,14 @@ $db = new Database($config);
     }
 
     ?>
-    
+
 <?php
+// If not logged in:
 if (!isset($_SESSION["username"]) ) {
     $status = "Please login or register to buy your items.";
+
+// If logged in, order has not already been sent, basket exsists and is not empty:
+// display the "CHeckout" button
 }elseif(isset($_SESSION["username"]) && $orderSent == false && isset($_SESSION['basket']) && !empty($_SESSION['basket'])){
 ?>
     <form action="" method="post">
@@ -103,6 +118,7 @@ if (!isset($_SESSION["username"]) ) {
         <input type="submit" value="Checkout" /><br />
     </form>
 <?php
+// If logged in and order has been sent: display "View receipt" button
 }else if(isset($_SESSION["username"]) && $orderSent) {
   ?>
   <form action="" method="post">
@@ -112,7 +128,7 @@ if (!isset($_SESSION["username"]) ) {
   </form>
   <?php
 }
-
+  //Prints the status message.
   if ( isset($status) ) {
     echo  $status ;
 }
@@ -120,4 +136,3 @@ if (!isset($_SESSION["username"]) ) {
 </div>
 
 <?php require "inc/footer.php"; ?>
-

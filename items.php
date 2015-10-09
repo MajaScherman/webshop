@@ -8,23 +8,24 @@ $db = new Database($config);
 
 // Creates basket array.
 $basket=array();
-//$_SESSION['basket']=$basket;
+
 if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     if(empty($_POST)){
         $status = "POST is empty";
+    // Checks that the CSRF_token is valid. This will protect against CSRF attacks.
     } elseif(!isset($_POST['CSRF_token']) || $_POST['CSRF_token'] != $_SESSION['CSRF_token']){
         $status = "POST is not valid";
     }else {
-        //Creates arrays to hold the keys and their values which the user has choosen.
+        //Creates arrays to hold the keys (itemnbr) and their values (amount) which the user has choosen.
         //These will later be added to
         $keys = array();
         $values = array();
-        //Sets the items string which will tell the user which items he/she has added and how many to empty
+        //Sets the items string which will tell the user which items he/she has added to the basket
         $items = "";
-        //Iterates through all the items
+        //Iterates through all the items where $key is the itemnbr and $value is the amount
         foreach($_POST as $key => $value)
         {
-            //Picks out the items which the user has set an amount for which is not 0.
+            //Picks out the items which the user has set an amount for which is not 0 and is not the CSRF_token
             if ($value != "0" && $key != "CSRF_token")
             {
                 //Adds the item name and amount to the items string and the arrays which will be added to the basket
@@ -47,6 +48,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
             foreach ($oldbasket as $key => $value) {
                 if(array_key_exists($key,$newbasket)){
                     $basket[$key] = $oldbasket[$key] + $newbasket[$key];
+                    // Removes the item from the baskets.
                     unset($newbasket[$key]);
                     unset($oldbasket[$key]);
                 }
