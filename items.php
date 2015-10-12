@@ -12,9 +12,11 @@ $basket=array();
 if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     if(empty($_POST)){
         $status = "POST is empty";
-    // Checks that the CSRF_token is valid. This will protect against CSRF attacks.
+
+    /* REMOVED TO ALLOw USER TO ADD ITEMS TO BASKET WITHOUT LOGGING IN.
+      // Checks that the CSRF_token is valid. This will protect against CSRF attacks.
     } elseif(!isset($_POST['CSRF_token']) || $_POST['CSRF_token'] != $_SESSION['CSRF_token']){
-        $status = "POST is not valid";
+        $status = "POST is not valid";*/
     }else {
         //Creates arrays to hold the keys (itemnbr) and their values (amount) which the user has choosen.
         //These will later be added to
