@@ -22,12 +22,14 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["CSRF_token"] = $randomtoken;
             header("Location: user.php");
         }else {
+          // Log in failed
             $status = "Wrong username or password";
             $_SESSION["loginCounter"] = $_SESSION["loginCounter"] +1;
             if($_SESSION["loginCounter"] == 2){
               $status = "Login failed 2 times. Next failed login attempt will
                lead to a 5s wait before you can try to login again.";
             }
+            // Resets counter
             if($_SESSION["loginCounter"] >= 3){
               $_SESSION["loginCounter"]= 0;
               sleep(5);
@@ -62,9 +64,9 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
             </tr>
         </table>
 
-        <input type="submit" value=" Submit "/><br />        
+        <input type="submit" value=" Submit "/><br />
 
-                    
+
         <?php if ( isset($status) ) : ?>
             <?= $status ;?>
         <?php endif ?>
