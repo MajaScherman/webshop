@@ -47,8 +47,6 @@ dbname=javacookie_db", $config["username"], $config["password"]);
      */
     public function unsafeDbQuery($query)
     {
-        
-        echo $query;
         try {
             $result = $this->conn->query($query);
 
