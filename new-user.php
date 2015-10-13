@@ -9,7 +9,8 @@ $db = new Database($config);
 
 if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
-    $username = htmlspecialchars($_POST["username"]);
+    //    $username = htmlspecialchars($_POST["username"]);
+    $username = $_POST["username"];
     $email = $_POST["email"];
     $givenname = htmlspecialchars($_POST["givenname"]);
     $homeaddress = htmlspecialchars($_POST["homeaddress"]);
@@ -19,14 +20,16 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
         $status = "Please fill in every field";
     } else if ( !validEmail($email)) {
         $status = "Please enter a valid email. ";
-    } else if (!preg_match("%^[A-Za-z0-9-_]{1,100}$%", $_POST["username"])) {
-        $status = "The username can only consist of letters, numbers, - and _.";
+        // } else if (!preg_match("%^[A-Za-z0-9-_]{1,100}$%", $_POST["username"])) {
+        //        $status = "The username can only consist of letters, numbers, - and _.";
     } else if(strlen($_POST["password"]) < 2) {
         $status = "The password should be at least 3 charachers long.";
     } else {
         //Register user
+        var_dump($password);
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
+        var_dump($hashed_password);
+        var_dump($username);
         $result = $db->createUser($username, $email, $hashed_password, $givenname,
                                   $surname, $homeaddress);
         if ($result)  {

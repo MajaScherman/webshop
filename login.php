@@ -7,10 +7,11 @@ require "class/db.php";
 require "functions.php";
 
 $db = new Database($config);
+
 if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $username = $_POST["username"];
-    $username = $username;
+    // Removed htmlspecialchars of username
     if ( empty($password) || empty($username)) {
         $status = "Missing username or password.";
     } else {

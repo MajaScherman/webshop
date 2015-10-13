@@ -54,8 +54,23 @@ dbname=javacookie_db", $config["username"], $config["password"]);
             return $result->fetchAll();
 
         } catch (Exception $e) {
+            echo $e->getMessage();
             return false;
         }
+    }
+
+    
+    /*
+       #------------------------------------------------------------------
+       # Returns user with specified username.
+       # Returns false if no user with $username was found.
+       # Note that the name implies that this is unsafe. Maby it is (itis!)
+       #------------------------------------------------------------------
+     */
+    public function unsafeGetUserByUsername($username)
+    {
+        $user = $this->unsafeDbQuery("SELECT * FROM users WHERE username = '" . $username . "'");
+        return $user[0];
     }
 
 
@@ -128,6 +143,7 @@ dbname=javacookie_db", $config["username"], $config["password"]);
         $user = $this->query_db("SELECT * FROM users WHERE username = :username", $bindings);
         return $user[0];
     }
+    
     /*
        #------------------------------------------------------------------
        # Creates user with specified information.

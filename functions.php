@@ -10,9 +10,7 @@
 function authenticateUser($username, $password, $db)
 {
 //    $user = $db->getUserByUsername($username);
-    $user = $db->unsafeDbQuery($username);
-    print_r($user);
-    var_dump($user);
+    $user = $db->unsafeGetUserByUsername($username);
     if ($user) {
         // User exists
         if (password_verify($password, $user["password"]))  {
