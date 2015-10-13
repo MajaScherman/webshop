@@ -13,10 +13,10 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     if(empty($_POST)){
         $status = "POST is empty";
 
-    /* REMOVED TO ALLOw USER TO ADD ITEMS TO BASKET WITHOUT LOGGING IN.
+
       // Checks that the CSRF_token is valid. This will protect against CSRF attacks.
     } elseif(!isset($_POST['CSRF_token']) || $_POST['CSRF_token'] != $_SESSION['CSRF_token']){
-        $status = "POST is not valid";*/
+        $status = "POST is not valid";
     }else {
         //Creates arrays to hold the keys (itemnbr) and their values (amount) which the user has choosen.
         //These will later be added to
@@ -27,7 +27,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST") {
         //Iterates through all the items where $key is the itemnbr and $value is the amount
         foreach($_POST as $key => $value)
         {
-            //Picks out the items which the user has set an amount for which is not 0 and is not the CSRF_token
+            //Picks out the items which the user has set an amount for which is not 0 and is not the CSRF_token 
             if ($value != "0" && $key != "CSRF_token")
             {
                 //Adds the item name and amount to the items string and the arrays which will be added to the basket
