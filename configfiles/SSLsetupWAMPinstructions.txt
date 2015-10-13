@@ -1,0 +1,54 @@
+Here is the setup for SSL, taken from http://dltr.org/blog/server/573/How-to-install-SSL-on-windows-localhost-wamp
+how to do it on WAMP.
+These SSL settings are for learning, in a real-life project passphrases should be complex and WAMP should not be used.
+
+
+Step 1. Generate private key
+C:\wamp\bin\apache\apache2.4.9\bin> openssl genrsa -aes256 -out private.key 2048
+
+Step 2.
+remove passphrase
+C:\wamp\bin\apache\apache2.4.9\bin> openssl rsa -in private.key -out private.key
+
+Step 3.
+Generate self-signed certificate.
+
+C:\wamp\bin\apache\apache2.4.9\bin> openssl req -new -x509 -nodes -sha1 -key private.key -out certificate.crt -days 36500 -config C:\wamp\bin\apache\apache2.4.9\conf\openssl.cnf
+
+Step 4.
+Create folders 'key' and 'cert' at: C:\wamp\bin\apache\apache2.4.9\conf
+
+Step 5.
+Copy 'certificate.crt' to cert and 'private.key' to key folders respectively.
+
+Step 6.
+Be sure that the path to the webshop is
+C:\wamp\www\webshop
+otherwise you have to change the files according to the link above.
+
+Step 7.
+Replace 
+C:\wamp\bin\apache\apache2.4.9\conf\httpd.conf 
+with httpd.conf in this folder.
+
+Step 8.
+Replace
+C:\wamp\bin\php\php5.5.12\php.ini
+with php.ini in this folder.
+
+Step 9.
+Replace
+C:\wamp\bin\apache\apache2.4.9\conf\extra\httpd-ssl.conf
+with httpd-ssl.conf in this folder.
+
+Step 10.
+on command line run "httpd -t" and make sure you get syntax OK.
+
+Step 11.
+Replace 
+C:\wamp\bin\apache\apache2.4.9\bin\php.ini
+with php.ini in this folder
+
+Step 12.
+Restart wamp and visit https://localhost
+Ignore warning about not certified certificate
