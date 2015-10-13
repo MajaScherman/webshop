@@ -71,7 +71,7 @@ In php.ini:
 ```
 ### Restrict cookie access to only html
 Marks the cookie as accessible only through the HTTP protocol. This means that the cookie won't be accessible by scripting languages, such as JavaScript. This setting can effectively help to reduce identity theft through XSS attacks (although it is not supported by all browsers). http://php.net/manual/en/session.configuration.php#ini.session.cookie-httponly
-In php.ini:
+Add in php.ini:
 
 ```
 session.cookie_httponly = 1
@@ -105,6 +105,7 @@ session.entropy_file = /dev/urandom
 
 ### Hide database password
 The password should not be visible in the php file. Instead this should be kept in another file that isn't as excessable to the application.
+We are using *PDO*
 #### Mysqli
 If you are using mysqli_connect() you can do as follows:
 
@@ -124,15 +125,14 @@ And connect with
 $db = mysqli_connect();
 ```
 #### PDO
-The settings could be set in the php.ini file.
-In php.ini:
+Add these to the php.ini:
 
 ```
 cfg.DB_USER = 'root'
 cfg.DB_NAME = 'javacookie_db'
 cfg.DB_PASS = ''
 ```
-And these variables can be read and assigned with the following code:
+And these variables can be read and assigned with the following code (already added):
 
 ```
 // Very simple loader
