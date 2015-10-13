@@ -36,4 +36,16 @@ function validEmail($email)
     return preg_match('/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/', $email);
 }
 
+/*
+   #------------------------------------------------------------------
+   # Loads db configs from php.ini file
+   #------------------------------------------------------------------
+ */
+function loadConfig( $vars = array() )
+{
+    foreach( $vars as $v ) {
+        define( $v, get_cfg_var( "cfg.$v" ) );
+    }
+}
+
 ?>

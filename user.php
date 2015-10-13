@@ -1,11 +1,10 @@
 <?php
 
-require "config.php";
 require "class/db.php";
-require "functions.php";
+
 session_start();
 
-$db = new Database($config);
+$db = new Database();
 
 if ( isset($_SESSION["username"]) ) {
     $username = $_SESSION["username"];

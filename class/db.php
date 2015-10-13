@@ -1,15 +1,20 @@
 <?php
 
+require_once "functions.php";
+
+
 class Database
 {
     private $conn;
     private $status_message;
 
-    public function __construct($config)
+    public function __construct()
     {
         try {
-            $this->conn = new PDO("mysql:host=localhost;
-dbname=javacookie_db", $config["username"], $config["password"]);
+            $cfg = array( 'DB_HOST', 'DB_USER', 'DB_PASS' );
+            loadConfig( $cfg );
+            
+            $this->conn = new PDO("mysql:host=localhost; dbname=javacookie_db", DB_USER, DB_PASS);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         } catch (Exception $e) {

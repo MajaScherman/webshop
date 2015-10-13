@@ -2,11 +2,9 @@
 
 session_start();
 
-require "config.php";
 require "class/db.php";
-require "functions.php";
 
-$db = new Database($config);
+$db = new Database();
 if ( $_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $username = $_POST["username"];

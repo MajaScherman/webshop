@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-require "config.php";
 //Assigns a new CSRF_token 
 $randomtoken = base64_encode( openssl_random_pseudo_bytes(32));
 $_SESSION["CSRF_token"] = $randomtoken;

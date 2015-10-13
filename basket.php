@@ -1,10 +1,8 @@
 <?php
 session_start();
-require "config.php";
 require "class/db.php";
-require "functions.php";
 
-$db = new Database($config);
+$db = new Database();
 ?>
 
 <?php require "inc/header.php"; ?>
