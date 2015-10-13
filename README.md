@@ -128,10 +128,9 @@ The settings could be set in the php.ini file.
 In php.ini:
 
 ```
-[MyCustomApp]
-myapp.cfg.DB_HOST = 'mysql:host=127.0.0.1;dbname=mydatabase'
-myapp.cfg.DB_USER = 'dbusername'
-myapp.cfg.DB_PASS = 'dbpassword'
+cfg.DB_USER = 'root'
+cfg.DB_NAME = 'javacookie_db'
+cfg.DB_PASS = ''
 ```
 And these variables can be read and assigned with the following code:
 
@@ -139,7 +138,7 @@ And these variables can be read and assigned with the following code:
 // Very simple loader
 function loadConfig( $vars = array() ) {
     foreach( $vars as $v ) {
-        define( $v, get_cfg_var( "myapp.cfg.$v" ) );
+        define( $v, get_cfg_var( "cfg.$v" ) );
     }
 }
  
