@@ -1,4 +1,9 @@
-# HACKIT Version 
+# HACKIT Version
+## Vulnerabilities
+* XSS
+* SQL injections
+* CSRF
+
 # webshop 
 This is a simple webshop that we use to practice web security.
 

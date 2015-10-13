@@ -47,6 +47,7 @@ dbname=javacookie_db", $config["username"], $config["password"]);
      */
     public function unsafeDbQuery($query)
     {
+        
         echo $query;
         try {
             $result = $this->conn->query($query);
@@ -54,6 +55,7 @@ dbname=javacookie_db", $config["username"], $config["password"]);
             return $result->fetchAll();
 
         } catch (Exception $e) {
+            echo "Error:  ";
             echo $e->getMessage();
             return false;
         }
@@ -69,7 +71,7 @@ dbname=javacookie_db", $config["username"], $config["password"]);
      */
     public function unsafeGetUserByUsername($username)
     {
-        $user = $this->unsafeDbQuery("SELECT * FROM users WHERE username = '" . $username . "'");
+        $user = $this->unsafeDbQuery("SELECT * FROM users WHERE username = '$username'");
         return $user[0];
     }
 

