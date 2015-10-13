@@ -23,6 +23,10 @@ Link to presentation: https://docs.google.com/a/student.lu.se/presentation/d/1iX
 ## Changes to config files when in production.
 Note that the primary usage for some *AMP stacks (such as XAMPP, MAMP, WAMP, etc.) is to easily deploy a friendly developer environment. So they are not (out of the box) secure for production use.
 
+### Attached config files.
+The configurations for WAMP is attached in the folder configfiles with instructions for how they should be set up, in case of a SSL connection using HTTPS.
+Below some of the changes for php.ini can be read. 
+
 ### Hide server information
 Security through obscurity -> theoretically bad idea, ok in practice.
 The fact that you use PHP and which version is sent in HTTP header. To make it harder for an attacker ta attack the site this information can be hidden.
@@ -105,25 +109,7 @@ session.entropy_file = /dev/urandom
 
 ### Hide database password
 The password should not be visible in the php file. Instead this should be kept in another file that isn't as excessable to the application.
-We are using *PDO*
-#### Mysqli
-If you are using mysqli_connect() you can do as follows:
 
-```
-$db = mysqli_connect(’host',’mysqlUser','mysqlPassword’);
-```
-And in httpd.conf file:
-
-```
-￼<Directory /www/somefolder>
-php_value mysql.default.user myusername php_value mysql.default.password mypassword php_value mysql.default.host server.
-</Directory>
-```
-And connect with
-
-```
-$db = mysqli_connect();
-```
 #### PDO
 Add these to the php.ini:
 
