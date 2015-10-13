@@ -18,6 +18,8 @@ This is a simple webshop that we use to practice web security.
 
 Link to google doc: https://docs.google.com/a/student.lu.se/document/d/1O-rdShlBjOP3qO6Z3Dhh71Zc8gab6ct_VAjz9UeFsD0/edit?usp=sharing
 
+Link to presentation: https://docs.google.com/a/student.lu.se/presentation/d/1iXJPWHQCoou_reIiRkmjzPmFXAriBoRYPBRdn6KebfE/edit?usp=sharing
+
 ## Changes to config files when in production.
 Note that the primary usage for some *AMP stacks (such as XAMPP, MAMP, WAMP, etc.) is to easily deploy a friendly developer environment. So they are not (out of the box) secure for production use.
 
